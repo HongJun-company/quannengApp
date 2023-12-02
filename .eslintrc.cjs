@@ -16,6 +16,9 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 'off',
     'no-undef': 'off',
-    'vue/no-unused-vars': 'off'
+    'vue/no-unused-vars': 'off',
+    'vue/require-component-is': 'off',
+    'vue/valid-v-model': 'off',
+    'vue/no-mutating-props': 'off'
   }
 }

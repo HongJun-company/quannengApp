@@ -1,13 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      #app {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      ;(function (window, document) {
+        var sizeUI = 1660 // 定义设计图尺寸
+        var remBase = 54 // 定义基准值
+        var docEl = document.documentElement
+        var bodyEl = document.querySelector('body')
+
+        setRemUnit()
+
+        window.addEventListener('resize', setRemUnit)
+        window.addEventListener('pageshow', function (e) {
+          if (e.persisted) setRemUnit()
+        })
+
+        function setRemUnit() {
+          var docFontSize = (docEl.clientWidth / sizeUI) * remBase
+          docEl.style.fontSize = docFontSize + 'px'
+          bodyEl.style.fontSize = 16 / docFontSize + 'rem'
+          handleRemAdapt()
+        }
+
+        function handleRemAdapt() {
+          var currentFontSize = parseInt(docEl.style.fontSize)
+          var temp = currentFontSize
+          for (var i = 0; i < 100; i++) {
+            var realFontSize = parseInt(window.getComputedStyle(docEl).fontSize)
+            var differ = realFontSize - currentFontSize
+            if (Math.abs(differ) >= 1) {
+              if (differ > 0) {
+                temp--
+              } else {
+                temp++
+              }
+              docEl.style.fontSize = temp + 'px'
+            } else {
+              break
+            }
+          }
+        }
+      })(window, document)
+    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
