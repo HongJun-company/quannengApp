@@ -6,7 +6,6 @@ interface LxyInterceptors<T = AxiosResponse> {
   responseFailureFn?: (err: any) => any
 }
 
-export interface LxyRequestConfig<T = AxiosResponse>
-  extends AxiosRequestConfig {
+export interface LxyRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
   interceptors?: LxyInterceptors<T>
 }
